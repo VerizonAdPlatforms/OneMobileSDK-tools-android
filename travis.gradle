@@ -1,0 +1,4 @@
+ext {
+    CI = System.getenv('CI')
+    CI_TAG = System.getenv('TRAVIS_TAG')
+}

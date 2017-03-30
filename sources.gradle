@@ -1,0 +1,10 @@
+android.libraryVariants.all { variant ->
+    def variantName = "${variant.name.capitalize()}"
+    if (variantName != "Release") return;
+
+    def jarSourcesTask = task("jar${variant.name.capitalize()}Sources", type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.srcDirs
+    }
+    artifacts.add('archives', jarSourcesTask);
+}

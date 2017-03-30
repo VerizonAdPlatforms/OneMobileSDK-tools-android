@@ -1,0 +1,26 @@
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+version = LIBRARY_VERSION
+group = GROUP_ID
+project.archivesBaseName = ARTIFACT_ID
+
+bintray {
+    // Credentials
+    user = BINTRAY_USER
+    key = BINTRAY_KEY
+
+    // Upload source
+    configurations = ['archives']
+
+    // Upload flags
+    dryRun = false
+    override = true
+    publish = true
+
+    // Package configuration
+    pkg {
+        repo = 'maven'
+        name = REPO_NAME
+    }
+}

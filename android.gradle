@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion TARGET_API_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION
+
+    aaptOptions {
+        failOnMissingConfigEntry true
+    }
+
+    lintOptions {
+        abortOnError true
+        showAll true
+        warningsAsErrors true
+        explainIssues true
+
+        textReport true
+        textOutput "stdout"
+
+        htmlReport false
+        xmlReport false
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.all {
+            testLogging {
+                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion MIN_API_VERSION
+        targetSdkVersion TARGET_API_VERSION
+
+        versionName LIBRARY_VERSION
+
+        BUILD_CONFIG_CONSTS.each { key, value -> buildConfigField "String", key, "\"${value}\"" }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
