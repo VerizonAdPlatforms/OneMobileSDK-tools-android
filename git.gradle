@@ -2,5 +2,6 @@ ext {
     GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
     GIT_BRANCH = "git rev-parse --abbrev-ref HEAD".execute(null, projectDir).text.trim()
     GIT_TAG = "git describe --abbrev=0".execute(null, projectDir).text.trim().split("\\.")
+    GIT_TAG = GIT_TAG.length > 1 ? GIT_TAG : ["0", "0"]
     GIT_VERSION = CI_TAG ? CI_TAG : GIT_TAG[0] + '.' + (GIT_TAG[1].toInteger() + 1)
 }
