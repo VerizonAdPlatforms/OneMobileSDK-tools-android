@@ -32,7 +32,7 @@ android.libraryVariants.all { variant ->
             options.addStringOption "enable-auto-highlight"
             options.addStringOption "quiet"
         }
-        
+
         exclude '**/R.java'
     }
 
