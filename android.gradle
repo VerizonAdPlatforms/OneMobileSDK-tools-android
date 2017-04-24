@@ -38,7 +38,7 @@ android {
 
         versionName LIBRARY_VERSION
 
-        if (ext.has('BUILD_CONFIG_CONSTS')) {
+        if (project.ext.has('BUILD_CONFIG_CONSTS')) {
             BUILD_CONFIG_CONSTS.each { key, value -> buildConfigField "String", key, "\"${value}\"" }
         }
     }
