@@ -45,7 +45,7 @@ apply from: 'pixels.gradle'
 
 dependencies {
     compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
-    compile 'com.google.android.gms:play-services-ads-lite:10.2.1'
+    compile 'com.google.android.gms:play-services-ads-lite:10.2.4'
 
     // Controls
     compile CI ? 'com.aol.one.publishers.android:controls:1.4' : project(':controls')
