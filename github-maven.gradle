@@ -1,0 +1,28 @@
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = GROUP_ID
+project.archivesBaseName = ARTIFACT_ID
+version = LIBRARY_VERSION
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file:$buildDir/maven/")
+        }
+    }
+}
+
+apply plugin: 'org.ajoberstar.git-publish'
+
+gitPublish {
+    repoUri = 'https://github.com/aol-public/OneMobileSDK-releases-android.git'
+    branch = 'maven'
+    repoDir = file("$buildDir/maven")
+    preserve {
+        include '**/*'
+    }
+    commitMessage "Version ${LIBRARY_VERSION}"
+}
+
+gitPublishCommit.dependsOn gitPublishReset, uploadArchives
+uploadArchives.dependsOn gitPublishReset

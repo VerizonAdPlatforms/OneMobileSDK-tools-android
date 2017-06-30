@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016 One by Aol : Publishers. All rights reserved.
+ */
+
 repositories {
     jcenter()
 }
@@ -8,21 +12,20 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'org.ajoberstar:gradle-git-publish:0.2.1'
     }
 }
 
-apply from: 'tools/travis.gradle'
-apply from: 'tools/git.gradle'
+apply from: 'tools/travis-consts.gradle'
+apply from: 'tools/git-consts.gradle'
 
 ext {
     // Android library config
     BUILD_TOOLS_VERSION = "25.0.2"
     MIN_API_VERSION = 16
     TARGET_API_VERSION = 25
-    LIBRARY_VERSION = GIT_VERSION
     BUILD_CONFIG_CONSTS = [
             'MS_BASE_URL': 'https://api.onesdk.aol.com/config'
     ]
@@ -30,33 +33,43 @@ ext {
     // Javadoc configuration
     JAVADOC_TITLE = "OneMobileSDK Javadoc"
 
-    // Bintray publish config
-    BINTRAY_KEY = System.getenv('BINTRAY_KEY')
-    BINTRAY_USER = System.getenv('BINTRAY_USER')
+    // Maven
     GROUP_ID = 'com.aol.one.publishers.android'
-    REPO_NAME = 'one-mobile-sdk'
     ARTIFACT_ID = 'sdk'
+    LIBRARY_VERSION = GIT_BASED_VERSION
 }
 
 apply from: 'tools/android.gradle'
 apply from: 'tools/javadoc.gradle'
-apply from: 'tools/bintray.gradle'
+apply from: 'tools/github-maven.gradle'
 apply from: 'pixels.gradle'
 
 dependencies {
-    compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
-    compile 'com.google.android.gms:play-services-ads-lite:10.2.4'
+    compile 'com.google.android.gms:play-services-ads-lite:10.2.1'
 
-    // Controls
-    compile CI ? 'com.aol.one.publishers.android:controls:1.4' : project(':controls')
-    testCompile CI ? 'com.aol.one.publishers.android:controls:1.4' : project(':controls')
+    if (CI) {
+        // Controls
+        compile 'com.aol.one.publishers.android:controls:1.7'
+        testCompile 'com.aol.one.publishers.android:controls:1.7'
+
+        // Renderer
+        compile 'com.aol.one.publishers.android:renderer:2.3'
+        testCompile 'com.aol.one.publishers.android:renderer:2.3'
+    } else {
+        // Controls
+        compile project(':controls')
+        testCompile project(':controls')
+
+        // Renderer
+        compile project(':renderer')
+        testCompile project(':renderer')
+    }
 
     testCompile 'junit:junit:4.12'
-    testCompile 'org.robolectric:robolectric:3.2.2'
+    testCompile 'org.robolectric:robolectric:3.3.2'
     testCompile 'net.javacrumbs.json-unit:json-unit-fluent:1.18.0'
-    testCompile 'org.assertj:assertj-core:1.7.1'
+    testCompile 'org.assertj:assertj-core:2.6.0'
     testCompile 'com.squareup.assertj:assertj-android:1.1.1'
-    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.mockito:mockito-core:2.7.22'
     testCompile 'com.google.code.gson:gson:2.8.0'
 }
-

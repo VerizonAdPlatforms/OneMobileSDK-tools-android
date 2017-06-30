@@ -7,9 +7,10 @@ that will be useful for CI and CD setup with Travis/Bintray stack.
 
 ## Content
 
-- `git.gradle` helpful git values
-- `travis.gradle` ci values
+- `git-consts.gradle` helpful git values
+- `travis-consts.gradle` ci values
 - `android.gradle` android library script
+- `github-maven.gradle` mavens artifacts upload script to github
 - `bintray.gradle` bintray upload script
 - `javadoc.gradle` javadoc artifact generation
 - `sources.gradle` sources artifact generation
@@ -41,15 +42,15 @@ buildscript {
 }
 
 // Order is important
-apply from: 'tools/travis.gradle'
-apply from: 'tools/git.gradle'
+apply from: 'tools/travis-consts.gradle'
+apply from: 'tools/git-consts.gradle'
 
 ext {
     // Android library config
     BUILD_TOOLS_VERSION = "25.0.2"
     MIN_API_VERSION = 16
     TARGET_API_VERSION = 25
-    LIBRARY_VERSION = GIT_VERSION
+    LIBRARY_VERSION = GIT_BASED_VERSION
     // These values will be added to BuildConfig.java
     BUILD_CONFIG_CONSTS = [
             'MY_BUILD_CONFIG_VALUE': 'some://url.for/further/use'
@@ -72,6 +73,8 @@ apply from: 'tools/javadoc.gradle'
 // This can be excluded if sources are not needed
 apply from: 'tools/sources.gradle'
 apply from: 'tools/bintray.gradle'
+// Or/and
+apply from: 'tools/github-maven.gradle'
 
 dependencies {
     // Your dependencies
