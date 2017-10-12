@@ -41,6 +41,7 @@ android {
 
         if (project.ext.has('BUILD_CONFIG_CONSTS')) {
             BUILD_CONFIG_CONSTS.each { key, value -> buildConfigField "String", key, "\"${value}\"" }
+            manifestPlaceholders = BUILD_CONFIG_CONSTS
         }
     }
 
