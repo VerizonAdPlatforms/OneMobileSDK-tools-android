@@ -1,0 +1,24 @@
+ext {
+    // Travis props
+    CI = System.getenv('CI')
+    CI_TAG = System.getenv('TRAVIS_TAG')
+
+    // Git props
+    GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
+    GIT_BRANCH = "git rev-parse --abbrev-ref HEAD".execute(null, projectDir).text.trim()
+    GIT_TAG = "git describe --tags --abbrev=0".execute(null, projectDir).text.trim().split("\\.")
+    GIT_TAG = GIT_TAG.length > 1 ? GIT_TAG : ["0", "0"]
+    GIT_BASED_VERSION = CI_TAG ?: "${GIT_TAG[0]}.${(GIT_TAG[1].toInteger() + 1)}-SNAPSHOT"
+
+    // Android props
+    KOTLIN_VERSION = '1.1.51'
+    KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
+    ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:2.3.3"
+    ANDROID_MAVEN_PLUGIN = "com.github.dcendents:android-maven-gradle-plugin:1.5"
+    GIT_PUBLISH_PLUGIN = "org.ajoberstar:gradle-git-publish:0.2.1"
+
+    // Android library config
+    BUILD_TOOLS_VERSION = "26.0.1"
+    MIN_API_VERSION = 16
+    TARGET_API_VERSION = 26
+}
