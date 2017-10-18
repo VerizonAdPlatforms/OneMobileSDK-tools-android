@@ -20,7 +20,7 @@ gitPublish {
     preserve {
         include '**/*'
     }
-    commitMessage "Artifact ${GROUP_ID}:{$ARTIFACT_ID}:${LIBRARY_VERSION}"
+    commitMessage "Artifact ${GROUP_ID}:${ARTIFACT_ID}:${LIBRARY_VERSION}"
 }
 
 gitPublishCommit.dependsOn gitPublishReset, uploadArchives
