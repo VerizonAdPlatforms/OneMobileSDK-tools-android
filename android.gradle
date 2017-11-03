@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion TARGET_API_VERSION
-    buildToolsVersion BUILD_TOOLS_VERSION
 
     aaptOptions {
         failOnMissingConfigEntry true
