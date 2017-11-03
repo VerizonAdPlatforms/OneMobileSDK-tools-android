@@ -6,40 +6,42 @@ dependencies {
     jaxDoclet('ch.raffael.pegdown-doclet:pegdown-doclet:1.3')
 }
 
-android.libraryVariants.all { variant ->
-    def variantName = "${variant.name.capitalize()}"
-    if (variantName != "Release") return;
+afterEvaluate {
+    android.libraryVariants.all { variant ->
+        def variantName = "${variant.name.capitalize()}"
+        if (variantName != "Release") return;
 
-    def genJavadocTask = task("generate" + variantName + "Javadoc", type: Javadoc) {
-        dependsOn variant.javaCompile
+        def genJavadocTask = task("generate" + variantName + "Javadoc", type: Javadoc) {
+            dependsOn variant.javaCompile
 
-        title = JAVADOC_TITLE
-        source = variant.javaCompile.source
-        classpath = files(variant.javaCompile.classpath, project.android.getBootClasspath())
+            title = JAVADOC_TITLE
+            source = variant.javaCompile.source
+            classpath = files(variant.javaCompile.classpath, project.android.getBootClasspath())
 
-        options {
-            doclet "ch.raffael.doclets.pegdown.PegdownDoclet"
-            docletpath configurations.jaxDoclet.files as File[]
-            links "http://docs.oracle.com/javase/7/docs/api/"
-            linksOffline "https://developer.android.com/reference", "${android.sdkDirectory}/docs/reference"
-            encoding = 'UTF-8'
-            locale 'en'
+            options {
+                doclet "ch.raffael.doclets.pegdown.PegdownDoclet"
+                docletpath configurations.jaxDoclet.files as File[]
+                links "http://docs.oracle.com/javase/7/docs/api/"
+                linksOffline "https://developer.android.com/reference", "${android.sdkDirectory}/docs/reference"
+                encoding = 'UTF-8'
+                locale 'en'
 
-            options.addStringOption "overview", "$rootDir/README.md"
-            options.addStringOption "javadocversion", "v8"
-            options.addStringOption "extensions", "all"
-            options.addStringOption "parse-timeout", "100"
-            options.addStringOption "enable-auto-highlight"
-            options.addStringOption "quiet"
+                options.addStringOption "overview", "$rootDir/README.md"
+                options.addStringOption "javadocversion", "v8"
+                options.addStringOption "extensions", "all"
+                options.addStringOption "parse-timeout", "100"
+                options.addStringOption "enable-auto-highlight"
+                options.addStringOption "quiet"
+            }
+
+            exclude '**/R.java'
         }
 
-        exclude '**/R.java'
+        def jarJavadocTask = task("jar${variant.name.capitalize()}Javadoc", type: Jar) {
+            classifier = 'javadoc'
+            dependsOn genJavadocTask
+            from genJavadocTask.destinationDir
+        }
+        artifacts.add('archives', jarJavadocTask);
     }
-
-    def jarJavadocTask = task("jar${variant.name.capitalize()}Javadoc", type: Jar) {
-        classifier = 'javadoc'
-        dependsOn genJavadocTask
-        from genJavadocTask.destinationDir
-    }
-    artifacts.add('archives', jarJavadocTask);
 }
