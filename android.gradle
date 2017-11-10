@@ -51,6 +51,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled MINIFY_LIB
+            useProguard MINIFY_LIB
+        }
         release {
             minifyEnabled MINIFY_LIB
             useProguard MINIFY_LIB
