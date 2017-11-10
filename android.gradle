@@ -46,13 +46,14 @@ android {
             BUILD_CONFIG_CONSTS.each { key, value -> buildConfigField "String", key, "\"${value}\"" }
             manifestPlaceholders = BUILD_CONFIG_CONSTS
         }
+        
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
 
     buildTypes {
         release {
             minifyEnabled MINIFY_LIB
             useProguard MINIFY_LIB
-            proguardFiles 'proguard-rules.pro'
         }
     }
 }
