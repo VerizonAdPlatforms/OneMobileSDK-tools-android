@@ -20,4 +20,5 @@ ext {
     // Android library config
     MIN_API_VERSION = 16
     TARGET_API_VERSION = 26
+    MINIFY_LIB = false
 }
