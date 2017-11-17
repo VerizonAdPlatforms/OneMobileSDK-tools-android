@@ -7,8 +7,8 @@ ext {
     GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
     GIT_BRANCH = "git rev-parse --abbrev-ref HEAD".execute(null, projectDir).text.trim()
     GIT_TAG = "git describe --tags --abbrev=0".execute(null, projectDir).text.trim().split("\\.")
-    GIT_TAG = GIT_TAG.length > 1 ? GIT_TAG : ["0", "1"]
-    GIT_BASED_VERSION = CI_TAG ?: "${GIT_TAG[0]}.${GIT_TAG[1]}-SNAPSHOT"
+    GIT_TAG = GIT_TAG ?: "1.0"
+    GIT_BASED_VERSION = CI_TAG ?: "$GIT_TAG-SNAPSHOT"
 
     // Android props
     KOTLIN_VERSION = '1.1.51'
