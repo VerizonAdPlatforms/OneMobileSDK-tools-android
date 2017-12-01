@@ -12,8 +12,8 @@ ext {
 
     // Android props
     KOTLIN_VERSION = '1.1.51'
-    SUPPORT_VERSION = '27.0.1'
-    
+    SUPPORT_VERSION = '27.0.2'
+
     // Build classpath
     KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
     ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.0.0"
