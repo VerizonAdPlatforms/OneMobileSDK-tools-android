@@ -4,7 +4,7 @@ ext {
     CI_TAG = System.getenv('TRAVIS_TAG')
     
     // Fetching tags
-    println "git fetch --tags".execute(null, projectDir).text.trim()
+    "git fetch --tags".execute(null, projectDir).text.trim()
 
     // Git props
     GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
