@@ -19,7 +19,7 @@ ext {
 
     // Build classpath
     KOTLIN_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VERSION"
-    ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.0.0"
+    ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:3.0.1"
     ANDROID_MAVEN_PLUGIN = "com.github.dcendents:android-maven-gradle-plugin:2.0"
     GIT_PUBLISH_PLUGIN = "org.ajoberstar:gradle-git-publish:0.2.1"
 
