@@ -14,7 +14,7 @@ ext {
     GIT_BASED_VERSION = CI_TAG ?: "$GIT_TAG-SNAPSHOT"
 
     // Android props
-    KOTLIN_VERSION = '1.2.0'
+    KOTLIN_VERSION = '1.2.10'
     SUPPORT_VERSION = '27.0.2'
 
     // Build classpath
