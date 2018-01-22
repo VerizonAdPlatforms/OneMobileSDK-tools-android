@@ -3,6 +3,8 @@ ext {
     CI = System.getenv('CI')
     CI_TAG = System.getenv('TRAVIS_TAG')
     
+    println "Travis tag: $CI_TAG"
+    
     // Fetching tags
     "git fetch --tags".execute(null, projectDir).text.trim()
 
