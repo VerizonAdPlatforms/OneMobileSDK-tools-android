@@ -12,8 +12,11 @@ ext {
     GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
     GIT_BRANCH = "git rev-parse --abbrev-ref HEAD".execute(null, projectDir).text.trim()
     GIT_TAG = "git describe --tags --abbrev=0".execute(null, projectDir).text.trim()
+    println "Actual git tag: $GIT_TAG"
     GIT_TAG = GIT_TAG ?: "1.0"
+    println "Git tag: $GIT_TAG"   
     GIT_BASED_VERSION = CI_TAG ?: "$GIT_TAG-SNAPSHOT"
+    println "Git tag: $GIT_BASED_VERSION ($CI_TAG)"
 
     // Android props
     KOTLIN_VERSION = '1.2.10'
