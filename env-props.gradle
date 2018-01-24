@@ -19,7 +19,7 @@ ext {
     println "Git tag: $GIT_BASED_VERSION ($CI_TAG)"
 
     // Android props
-    KOTLIN_VERSION = '1.2.10'
+    KOTLIN_VERSION = '1.2.21'
     SUPPORT_VERSION = '27.0.2'
     IS_ANDROID = true
 
