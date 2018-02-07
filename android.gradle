@@ -47,7 +47,9 @@ android {
             manifestPlaceholders = BUILD_CONFIG_CONSTS
         }
         
-        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                'proguard-rules.pro',
+                'proguard-classes.pro'
     }
 
     buildTypes {
