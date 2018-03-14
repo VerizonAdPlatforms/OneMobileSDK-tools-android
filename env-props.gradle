@@ -20,7 +20,7 @@ ext {
 
     // Android props
     KOTLIN_VERSION = '1.2.30'
-    SUPPORT_VERSION = '27.1.0'
+    SUPPORT_VERSION = '27.0.2'
     IS_ANDROID = true
 
     // Build classpath
