@@ -21,6 +21,9 @@ ext {
     // Android props
     KOTLIN_VERSION = '1.2.30'
     SUPPORT_VERSION = '27.1.0'
+    // ExoPlayer
+    EXO_VERSION = '2.7.1'
+    
     IS_ANDROID = true
 
     // Build classpath
