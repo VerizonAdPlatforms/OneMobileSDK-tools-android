@@ -17,7 +17,7 @@ ext {
     // ExoPlayer
     EXO_VERSION = '2.7.1'
     // Chromecast
-    CHROMECAST_VERSION = '1.7'
+    CHROMECAST_VERSION = '1.7-SNAPSHOT'
     
     IS_ANDROID = true
 
