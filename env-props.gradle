@@ -23,6 +23,8 @@ ext {
     SUPPORT_VERSION = '27.1.0'
     // ExoPlayer
     EXO_VERSION = '2.7.1'
+    // Cromecast
+    CHROMECAST_VERSION = '1.7'
     
     IS_ANDROID = true
 
