@@ -3,21 +3,14 @@ ext {
     CI = System.getenv('CI')
     CI_TAG = System.getenv('TRAVIS_TAG')
     
-    println "Travis tag: $CI_TAG"
-    
-    // Fetching tags
-    "git fetch --tags".execute(null, projectDir).text.trim()
-
     // Git props
     GIT_SHA = "git rev-parse --short HEAD".execute(null, projectDir).text.trim()
     GIT_BRANCH = "git rev-parse --abbrev-ref HEAD".execute(null, projectDir).text.trim()
     GIT_TAG = "git describe --tags --abbrev=0".execute(null, projectDir).text.trim()
-    println "Actual git tag: $GIT_TAG"
+    PREVIOUS_TAG = "git describe --tags --abbrev=0 $GIT_TAG^".execute(null, projectDir).text.trim()
     GIT_TAG = GIT_TAG ?: "1.0"
-    println "Git tag: $GIT_TAG"   
     GIT_BASED_VERSION = CI_TAG ?: "$GIT_TAG-SNAPSHOT"
-    println "Git tag: $GIT_BASED_VERSION ($CI_TAG)"
-
+    
     // Android props
     KOTLIN_VERSION = '1.2.30'
     SUPPORT_VERSION = '27.1.0'
