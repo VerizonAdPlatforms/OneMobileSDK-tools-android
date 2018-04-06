@@ -13,7 +13,7 @@ ext {
     
     // Android props
     KOTLIN_VERSION = '1.2.30'
-    SUPPORT_VERSION = '27.1.0'
+    SUPPORT_VERSION = '27.1.1'
     // ExoPlayer
     EXO_VERSION = '2.7.1'
     // Chromecast
